@@ -8,55 +8,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='fullscreen.css') }}" />
 </head>
-<body>
-    <main class="page">
-        <header class="hero">
-            <div>
-                <p class="eyebrow">Sistema de Registo</p>
-                <h1>Lojas do Cidadão</h1>
-                <p class="lede">Clique em qualquer serviço para registar a sua visita.</p>
-            </div>
-        </header>
-
-        <section class="panel">
-            <div class="service-buttons">
-                <div class="service-card" data-label="Cartório">
-                    <div class="service-icon">📋</div>
-                    <div class="service-name">Cartório</div>
-                    <button class="service-btn" data-label="Cartório">Registar</button>
-                </div>
-
-                <div class="service-card" data-label="Finanças">
-                    <div class="service-icon">💰</div>
-                    <div class="service-name">Finanças</div>
-                    <button class="service-btn" data-label="Finanças">Registar</button>
-                </div>
-
-                <div class="service-card" data-label="Segurança Social">
-                    <div class="service-icon">🏥</div>
-                    <div class="service-name">Segurança Social</div>
-                    <button class="service-btn" data-label="Segurança Social">Registar</button>
-                </div>
-
-                <div class="service-card" data-label="Conservatória">
-                    <div class="service-icon">🏛️</div>
-                    <div class="service-name">Conservatória</div>
-                    <button class="service-btn" data-label="Conservatória">Registar</button>
-                </div>
+<body class="fullscreen">
+    <main class="fullscreen-page">
+        <div class="service-buttons-full">
+            <div class="service-card-full" data-label="Cartório">
+                <div class="service-icon-full">📋</div>
+                <div class="service-name-full">Cartório</div>
+                <button class="service-btn-full" data-label="Cartório">Registar</button>
             </div>
 
-            <div class="status" id="status">Clique em "Registar" para guardar a sua visita.</div>
-            <div class="card" id="result" aria-live="polite" aria-atomic="true">
-                <div class="placeholder">Aguardando clique...</div>
+            <div class="service-card-full" data-label="Finanças">
+                <div class="service-icon-full">💰</div>
+                <div class="service-name-full">Finanças</div>
+                <button class="service-btn-full" data-label="Finanças">Registar</button>
             </div>
 
-            <div class="footer-links">
-                <a href="/dashboard" class="dashboard-link">📊 Ver Dashboard</a>
+            <div class="service-card-full" data-label="Segurança Social">
+                <div class="service-icon-full">🏥</div>
+                <div class="service-name-full">Segurança Social</div>
+                <button class="service-btn-full" data-label="Segurança Social">Registar</button>
             </div>
-        </section>
+
+            <div class="service-card-full" data-label="Conservatória">
+                <div class="service-icon-full">🏛️</div>
+                <div class="service-name-full">Conservatória</div>
+                <button class="service-btn-full" data-label="Conservatória">Registar</button>
+            </div>
+        </div>
+
+        <div class="result-overlay" id="resultOverlay">
+            <div class="result-box">
+                <div id="resultContent"></div>
+                <button class="close-result" onclick="document.getElementById('resultOverlay').style.display='none'">✕ Fechar</button>
+            </div>
+        </div>
     </main>
 
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='script-fullscreen.js') }}" defer></script>
 </body>
 </html>
