@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registo de Cliques</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <main class="page">
+        <header class="hero">
+            <div>
+                <p class="eyebrow">ATD · LP</p>
+                <h1>Registo de cliques com contador diário</h1>
+                <p class="lede">Quatro botões, um contador sequencial diário e registos guardados em base de dados.</p>
+            </div>
+        </header>
+
+        <section class="panel">
+            <div class="buttons" id="buttons">
+                <button data-label="Botão 1">Botão 1</button>
+                <button data-label="Botão 2">Botão 2</button>
+                <button data-label="Botão 3">Botão 3</button>
+                <button data-label="Botão 4">Botão 4</button>
+            </div>
+            <div class="status" id="status">Clique num botão para começar.</div>
+            <div class="card" id="result" aria-live="polite" aria-atomic="true">
+                <div class="placeholder">Ainda não há registos neste dia.</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
