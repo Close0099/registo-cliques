@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registo de Cliques</title>
+    <title>Registo de Cliques - Lojas do Cidadão</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,23 +13,46 @@
     <main class="page">
         <header class="hero">
             <div>
-                <p class="eyebrow">ATD · LP</p>
-                <h1>Registo de cliques com contador diário</h1>
-                <p class="lede">Quatro botões, um contador sequencial diário e registos guardados em base de dados.</p>
+                <p class="eyebrow">Sistema de Registo</p>
+                <h1>Lojas do Cidadão</h1>
+                <p class="lede">Clique em qualquer serviço para registar a sua visita.</p>
             </div>
         </header>
 
         <section class="panel">
-            <div class="buttons" id="buttons">
-                <button data-label="Botão 1">Botão 1</button>
-                <button data-label="Botão 2">Botão 2</button>
-                <button data-label="Botão 3">Botão 3</button>
-                <button data-label="Botão 4">Botão 4</button>
-                <button id="exportBtn" class="export-btn">📥 Exportar</button>
+            <div class="service-buttons">
+                <div class="service-card" data-label="Cartório">
+                    <div class="service-icon">📋</div>
+                    <div class="service-name">Cartório</div>
+                    <button class="service-btn" data-label="Cartório">Registar</button>
+                </div>
+
+                <div class="service-card" data-label="Finanças">
+                    <div class="service-icon">💰</div>
+                    <div class="service-name">Finanças</div>
+                    <button class="service-btn" data-label="Finanças">Registar</button>
+                </div>
+
+                <div class="service-card" data-label="Segurança Social">
+                    <div class="service-icon">🏥</div>
+                    <div class="service-name">Segurança Social</div>
+                    <button class="service-btn" data-label="Segurança Social">Registar</button>
+                </div>
+
+                <div class="service-card" data-label="Conservatória">
+                    <div class="service-icon">🏛️</div>
+                    <div class="service-name">Conservatória</div>
+                    <button class="service-btn" data-label="Conservatória">Registar</button>
+                </div>
             </div>
-            <div class="status" id="status">Clique num botão para começar.</div>
+
+            <div class="status" id="status">Clique em "Registar" para guardar a sua visita.</div>
             <div class="card" id="result" aria-live="polite" aria-atomic="true">
-                <div class="placeholder">Ainda não há registos neste dia.</div>
+                <div class="placeholder">Aguardando clique...</div>
+            </div>
+
+            <div class="footer-links">
+                <a href="/dashboard" class="dashboard-link">📊 Ver Dashboard</a>
             </div>
         </section>
     </main>

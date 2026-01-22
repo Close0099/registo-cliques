@@ -1,4 +1,4 @@
-const buttons = Array.from(document.querySelectorAll("button[data-label]"));
+const serviceButtons = Array.from(document.querySelectorAll("button.service-btn"));
 const statusEl = document.getElementById("status");
 const resultEl = document.getElementById("result");
 
@@ -9,7 +9,7 @@ function setStatus(message, isError = false) {
 
 function renderResult(payload) {
     if (!payload) {
-        resultEl.innerHTML = '<div class="placeholder">Ainda não há registos neste dia.</div>';
+        resultEl.innerHTML = '<div class="placeholder">Aguardando clique...</div>';
         return;
     }
 
@@ -19,8 +19,8 @@ function renderResult(payload) {
             <span class="badge">Clique #${click_number}</span>
             <span>${date}</span>
             <span>${time}</span>
+            <span class="badge">${button}</span>
         </div>
-        <div class="badge">${button}</div>
     `;
 }
 
@@ -40,32 +40,24 @@ async function sendClick(buttonLabel) {
         }
 
         renderResult(data);
-        setStatus("Clique registado com sucesso.");
+        setStatus("✓ Clique registado com sucesso!");
     } catch (err) {
         console.error(err);
-        setStatus(err.message || "Não foi possível registar o clique.", true);
+        setStatus("✗ " + (err.message || "Não foi possível registar o clique."), true);
     } finally {
         toggleButtons(false);
     }
 }
 
 function toggleButtons(disabled) {
-    buttons.forEach((btn) => {
+    serviceButtons.forEach((btn) => {
         btn.disabled = disabled;
     });
 }
 
-buttons.forEach((btn) => {
+serviceButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
         const label = btn.getAttribute("data-label");
         if (label) sendClick(label);
     });
 });
-
-// Export button
-const exportBtn = document.getElementById("exportBtn");
-if (exportBtn) {
-    exportBtn.addEventListener("click", () => {
-        window.location.href = "/api/export";
-    });
-}

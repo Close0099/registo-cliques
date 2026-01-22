@@ -87,9 +87,44 @@ def register_click():
     )
 
 
-@app.route("/api/health", methods=["GET"])
-def health():
-    return jsonify({"status": "ok"})
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
+
+@app.route("/api/all", methods=["GET"])
+def get_all_data():
+    """Return all clicks with statistics."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Get all clicks
+    cursor.execute(
+        "SELECT button_label, click_number, click_date, click_time FROM clicks ORDER BY click_date DESC, click_number DESC"
+    )
+    all_clicks = cursor.fetchall()
+
+    # Get today's clicks
+    today = datetime.now().strftime("%Y-%m-%d")
+    cursor.execute(
+        "SELECT COUNT(*) FROM clicks WHERE click_date = ?", (today,)
+    )
+    today_count = cursor.fetchone()[0]
+
+    # Get unique services
+    cursor.execute("SELECT COUNT(DISTINCT button_label) FROM clicks")
+    unique_services = cursor.fetchone()[0]
+
+    conn.close()
+
+    return jsonify(
+        {
+            "clicks": all_clicks,
+            "total": len(all_clicks),
+            "today": today_count,
+            "unique": unique_services,
+        }
+    )
 
 
 @app.route("/api/export", methods=["GET"])
@@ -103,7 +138,7 @@ def export_data():
 
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(["Botão", "Número Sequencial", "Data", "Hora"])
+    writer.writerow(["Serviço", "Número Sequencial", "Data", "Hora"])
     writer.writerows(rows)
 
     output.seek(0)
@@ -111,7 +146,7 @@ def export_data():
         io.BytesIO(output.getvalue().encode("utf-8")),
         mimetype="text/csv",
         as_attachment=True,
-        download_name="cliques.csv"
+        download_name="registo_cliques.csv"
     )
 
 
