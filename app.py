@@ -1,7 +1,9 @@
+import csv
+import io
 import os
 import sqlite3
 from datetime import datetime
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_file
 
 app = Flask(__name__)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -88,6 +90,29 @@ def register_click():
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok"})
+
+
+@app.route("/api/export", methods=["GET"])
+def export_data():
+    """Export all clicks to a CSV file."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT button_label, click_number, click_date, click_time FROM clicks ORDER BY click_date DESC, click_number DESC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["Botão", "Número Sequencial", "Data", "Hora"])
+    writer.writerows(rows)
+
+    output.seek(0)
+    return send_file(
+        io.BytesIO(output.getvalue().encode("utf-8")),
+        mimetype="text/csv",
+        as_attachment=True,
+        download_name="cliques.csv"
+    )
 
 
 if __name__ == "__main__":

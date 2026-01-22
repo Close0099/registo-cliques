@@ -107,6 +107,15 @@ button:disabled {
     opacity: 0.85;
 }
 
+.export-btn {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    box-shadow: 0 10px 35px rgba(139, 92, 246, 0.35);
+}
+
+.export-btn:hover {
+    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.45);
+}
+
 .status {
     color: var(--muted);
     font-size: 15px;

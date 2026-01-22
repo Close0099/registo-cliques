@@ -58,6 +58,14 @@ function toggleButtons(disabled) {
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
         const label = btn.getAttribute("data-label");
-        sendClick(label);
+        if (label) sendClick(label);
     });
 });
+
+// Export button
+const exportBtn = document.getElementById("exportBtn");
+if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+        window.location.href = "/api/export";
+    });
+}
