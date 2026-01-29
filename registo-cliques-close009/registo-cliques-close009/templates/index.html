@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registo de Cliques - Lojas do Cidadão</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='fullscreen.css') }}" />
+</head>
+    <body class="fullscreen">
+    <main class="fullscreen-page">
+        <!-- Ícone de Manual -->
+        <button id="manualIcon" class="manual-trigger" title="Manual de Utilização">
+            <span class="manual-icon-symbol">?</span>
+        </button>
+
+        <div class="service-buttons-full">
+            <div class="service-card-full" data-label="Cartório">
+                <div class="service-icon-full">📋</div>
+                <div class="service-name-full">Cartório</div>
+                <button class="service-btn-full" data-label="Cartório">Registar</button>
+            </div>
+
+            <div class="service-card-full" data-label="Finanças">
+                <div class="service-icon-full">💰</div>
+                <div class="service-name-full">Finanças</div>
+                <button class="service-btn-full" data-label="Finanças">Registar</button>
+            </div>
+
+            <div class="service-card-full" data-label="Segurança Social">
+                <div class="service-icon-full">🏥</div>
+                <div class="service-name-full">Segurança Social</div>
+                <button class="service-btn-full" data-label="Segurança Social">Registar</button>
+            </div>
+
+            <div class="service-card-full" data-label="Conservatória">
+                <div class="service-icon-full">🏛️</div>
+                <div class="service-name-full">Conservatória</div>
+                <button class="service-btn-full" data-label="Conservatória">Registar</button>
+            </div>
+        </div>
+
+        <!-- Modal do Manual -->
+        <div id="manualModal" class="manual-overlay">
+            <div class="manual-box">
+                <div class="manual-header">
+                    <h2>Manual de Utilização</h2>
+                    <button class="close-manual" id="closeManual">✕</button>
+                </div>
+                <div class="manual-content">
+                    <div class="manual-section">
+                        <h3>1. Registo de Presença</h3>
+                        <p>Cada botão colorido representa um serviço disponível na Loja do Cidadão. Para registar um atendimento, basta clicar no botão <strong>"Registar"</strong> do serviço correspondente.</p>
+                    </div>
+                    <div class="manual-section">
+                        <h3>2. Confirmação</h3>
+                        <p>Após clicar, uma janela de confirmação aparecerá no centro do ecrã com o número sequencial do seu registo, a data e a hora. Esta janela fecha-se automaticamente após 3 segundos.</p>
+                    </div>
+                    <div class="manual-section">
+                        <h3>3. Modo Ecrã Inteiro</h3>
+                        <p>Esta interface foi desenhada para quiosques. Se estiver num navegador, pressione <strong>F11</strong> para colocar em modo ecrã inteiro e facilitar a utilização pelos cidadãos.</p>
+                    </div>
+                    <div class="manual-section">
+                        <h3>4. Consulta de Dados</h3>
+                        <p>Para consultar o histórico de registos e exportar relatórios, aceda ao <strong>Painel de Controlo</strong> (Dashboard) através do link administrativo da plataforma.</p>
+                    </div>
+                </div>
+                <button class="manual-ok-btn" id="manualOk">Entendido</button>
+            </div>
+        </div>
+
+        <div class="result-overlay" id="resultOverlay">
+            <div class="result-box">
+                <div id="resultContent"></div>
+                <button class="close-result" onclick="document.getElementById('resultOverlay').style.display='none'">✕ Fechar</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script-fullscreen.js') }}" defer></script>
+</body>
+</html>
